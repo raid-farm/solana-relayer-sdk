@@ -73,7 +73,7 @@ class TransactionClass {
   async send() {
     let connection = new Connection(clusterApiUrl("devnet"));
     const x = await connection.getLatestBlockhash();
-    const pk = await fetch("http://localhost:3000/api/sdk", {
+    const pk = await fetch("https://raid-solana-relayer.vercel.app/api/sdk", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -98,7 +98,7 @@ class TransactionClass {
     transaction.partialSign(this.keypair);
     if (transaction.signatures[1].signature) {
       const signature = transaction.signatures[1].signature;
-      return await fetch("http://localhost:3000/api/tx", {
+      return await fetch("https://raid-solana-relayer.vercel.app/api/tx", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
